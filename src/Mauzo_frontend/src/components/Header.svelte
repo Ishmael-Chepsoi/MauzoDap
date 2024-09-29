@@ -1,5 +1,9 @@
 <script>
-    // This script could contain any logic or reactive declarations needed for your header
+    let menuOpen = true;
+    function toggleMenu() {
+        menuOpen = !menuOpen;
+    }
+
   </script>
   
   <style>
@@ -37,41 +41,34 @@
         align-items: center;
         justify-content: flex-start;
     }
-    .home {
-        position: relative;
-        line-height: 24px;
-    }
     .homeParent {
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         align-items: flex-start;
-        justify-content: flex-start;
+        align-items: center;
         gap: 48px;
         font-size: 16px;
         color: #003459;
     }
-    .frameParent {
-        height: 44px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 48px;
-    }
-    .usearchIcon {
-        width: 20px;
+    .homeParent a {
+        text-decoration: none;
+        color: #003459;
         position: relative;
-        height: 20px;
-        overflow: hidden;
-        flex-shrink: 0;
-    }
-    .searchSomethingHere {
+        line-height: 24px; 
         position: relative;
-        line-height: 20px;
-        font-weight: 500;
+        font-size: 16px;
+        font-family: Poppins;
+        color: #003459;
+        text-align: left; 
     }
+    .menuicon {
+      display: none;  /* Hidden on larger screens */
+    }
+  
+
     .usearchParent {
-        width: 280px;
+        width: auto;
         border-radius: 46px;
         background-color: #fdfdfd;
         display: flex;
@@ -88,7 +85,7 @@
         border-radius: none;
         border: none;
         cursor: auto;
-        outline: none; /* Added outline property to remove border when active */
+        outline: none; 
     }
 
     .buttonL {
@@ -168,20 +165,89 @@
         background-color: transparent; /* Make the header background transparent */
     }
 
-  </style>
-  <div class="headerDesktop">
-    <div class="frame">
-        <img class="imageIcon " src="/Logo.png" alt="Logo" />
-      <div class="group">
-        <div class="shopForBest">Shop for Best</div>
-      </div>
+    nav:open {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+    }
+    .menuicon {
+        display: none;
+    }
+    
+    @media (max-width: 768px) {
+        .menuicon {
+            height: 32px;
+            aspect-ratio: 1;
+            border: 2px solid var(--light);
+            background-color: transparent;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            }
+        
+            .menuicon > div {
+            height: 2px;
+            border-radius: 1px;
+            width: 14px;
+            background-color: #003459;
+            position: absolute;
+            }
+        
+            .bar-1 {
+            transform: translateY(-5px);
+            }
+        
+            .bar-3 {
+            transform: translateY(5px);
+            }
+
+         /* Hide the menu by default on smaller screens */
+        .homeParent {
+        display: none;
+        }
+    
+        /* Show menu when open */
+        nav.open .homeParent {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        padding: 10px 0;
+        gap: 10px;
+        }
+    }
+
+
+    </style>
+
+    <div class="headerDesktop">
+        <button class="menuicon" on:click={toggleMenu}>
+            <!-- lan horizontal line -->
+                <div class="bar-1" />
+                <div class="bar-2" />
+                <div class="bar-3" />
+        </button>
+        <div class="frame">
+            <img class="imageIcon " src="/Logo.png" alt="Logo" />
+            <div class="group">
+                <div class="shopForBest">Shop for Best</div>
+            </div>
     </div>
-    <div class="homeParent">
-      <b>Home</b>
-      <b>Category</b>
-      <b>About</b>
-      <b>Contact</b>
-    </div>
+        <nav class:open={menuOpen}>
+         <div class="homeParent">
+            <a href="/">Home</a>
+            <a href="/category">Category</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+         </div>
+        </nav>
     <div class="frameGroup">
       <div class="usearchParent">
           <input class="search" placeholder="Search something here!" />
@@ -192,11 +258,11 @@
       </div>
       <div class="frameContainer">
         <div class="frameDiv">
-        <img class="frameChild" alt="" src="images/frame.svg" />
+         <img class="frameChild" alt="" src="images/frame.svg" />
         <div class="vnd">VND</div>
         </div>
-        <img class="arrowCaretDownSm" alt="" src="icons/arrow-caret-down-sm.svg" />
+         <img class="arrowCaretDownSm" alt="" src="icons/arrow-caret-down-sm.svg" />
         </div>
+     </div>
     </div>
-  </div>
-  
+    

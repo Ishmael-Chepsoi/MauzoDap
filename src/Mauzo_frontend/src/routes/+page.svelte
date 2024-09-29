@@ -1,5 +1,6 @@
 <script>
   import Header from '../components/Header.svelte';
+  import HeadingMobile from '../components/Header.svelte';
   import Banner from '../components/Banner.svelte';
   import ProductCard from '../components/ProductCard.svelte';
   import Footer from '../components/Footer.svelte';
@@ -172,12 +173,12 @@
 
 
 </style>
-
-<Header />
+<HeadingMobile />
+<!-- <Header /> -->
 
 <main class="mainSection">
   <Banner />
-  
+
   <section class="productListSection">
     <div class="productssectionheader">
       <div class="whatsNewParent">
